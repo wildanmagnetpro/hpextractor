@@ -1,0 +1,24 @@
+// JavaScript Document
+
+$(document).ready(function() {
+	
+	$('#extractor-form').bind('contextmenu', function(e) {
+		e.preventDefault();
+	});
+	
+	$('input, textarea').each(function() {
+		if($(this).val()== '') {
+			$(this).val($(this).attr('alt'));
+		}
+	});
+	
+	$('input, textarea').live('focus', function() {
+		if($(this).val()== $(this).attr('alt')) {
+			$(this).val('');
+		}
+	}).live('blur', function() {
+		if($(this).val()== '') {
+			$(this).val($(this).attr('alt'));
+		}
+	});
+});

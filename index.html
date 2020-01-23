@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Phone Number Extractor</title>
+<script type="text/javascript" src="a_data/jquery-mini.js"></script>
+<script type="text/javascript" src="a_data/extractor.js"></script>
+<script type="text/javascript" src="a_data/extractor_002.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$.phoneExtractor({
+		input: '#textInput',
+		output: '#phoneList',
+		filters: '.startsWith',
+		chkDuplicate: '#rmvDuplicate',
+		resultCount: '#count',
+		
+		extractButton: '#extract',
+		heighlightButton: '#highlight',
+		csvExport: '#csv',
+		txtExport: '#txt',
+	});
+	
+	parent.resizeExtractorFrame($(document).width(), $(document).height());
+});
+</script>
+
+<style>
+body {
+font-family:Arial, Helvetica, sans-serif;
+font-size:11pt;
+}
+</style>
+</head>
+
+<body>
+	<form id="extractor-form" method="post" target="extractor-post-frame" action="javascript:void(0);">
+		<table id="extractor-form" style="padding:10px; border:#666666 1px solid;" cellpadding="10" align="center">
+			<tbody><tr>
+				<td colspan="2" style="padding-right:5px; background:#006666; color:#FFFFFF;">Phone Number Extractor</td>
+			</tr>
+			<tr>
+				<td style="padding-right:5px;">
+					<textarea id="textInput" style="width:250px; height:200px;" alt="Copy text from any source and paste it into here. Then click extract button.">Copy text from any source and paste it into here. Then click extract button.</textarea>
+				</td>
+				<td style="padding-left:5px;">
+					<textarea id="phoneList" style="width:250px; height:200px;" readonly="readonly"></textarea>
+                    <textarea name="data" style="display:none;"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align:right;">
+					Phone number count: <span id="count" style="font-weight:bold;">21</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					Numbers beginning with: 
+					<input type="text" class="startsWith" style="width:50px;">
+					<input type="text" class="startsWith" style="width:50px;">
+					<input type="text" class="startsWith" style="width:50px;">
+					&nbsp;&nbsp;
+					<label><input type="checkbox" id="rmvDuplicate" checked="checked"> Remove duplicate</label>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table style="width:100%;" cellspacing="0" cellpadding="0">
+						<tbody><tr>
+							<td>
+								<button type="button" id="extract">Extract</button>
+								<button type="reset">Reset</button>
+								<button type="button" id="highlight">Highlight Result</button>
+							</td>
+							
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+		</tbody></table>
+        <iframe name="extractor-post-frame" style="display:none;"></iframe>
+	</form>
+
+</body></html>
